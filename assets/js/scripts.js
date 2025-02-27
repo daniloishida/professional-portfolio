@@ -94,3 +94,13 @@ function showSection(sectionId) {
     });
     document.getElementById(sectionId).classList.remove('hidden');
 }
+
+let currentSlide = 0;
+
+function moveCarousel(direction) {
+    const items = document.querySelectorAll('.timeline-item');
+    const totalItems = items.length;
+    currentSlide = (currentSlide + direction + totalItems) % totalItems;
+    const container = document.querySelector('.timeline-container');
+    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
