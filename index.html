@@ -11,9 +11,9 @@
         <h1>Danilo Issida Gonçalves</h1>
         <nav>
             <ul>
-                <li><a href="pages/experience.html" data-lang="experience">Experiências</a></li>
-                <li><a href="pages/certifications.html" data-lang="certifications">Certificações</a></li>
-                <li><a href="pages/education.html" data-lang="education">Educação</a></li>
+                <li><a href="#experience" data-lang="experience" onclick="showSection('experience')">Experiências</a></li>
+                <li><a href="#certifications" data-lang="certifications" onclick="showSection('certifications')">Certificações</a></li>
+                <li><a href="#education" data-lang="education" onclick="showSection('education')">Educação</a></li>
             </ul>
         </nav>
         <div class="language-toggle">
@@ -25,6 +25,21 @@
         <section id="home">
             <h2 data-lang="welcome">Bem-vindo ao meu portfólio interativo!</h2>
             <p data-lang="explore">Explore minhas experiências, certificações e educação.</p>
+        </section>
+        <section id="experience" class="hidden">
+            <h2 data-lang="experience">Experiências</h2>
+            <p>Detalhes sobre minhas experiências profissionais.</p>
+            <!-- Adicione mais conteúdo aqui -->
+        </section>
+        <section id="certifications" class="hidden">
+            <h2 data-lang="certifications">Certificações</h2>
+            <p>Detalhes sobre minhas certificações.</p>
+            <!-- Adicione mais conteúdo aqui -->
+        </section>
+        <section id="education" class="hidden">
+            <h2 data-lang="education">Educação</h2>
+            <p>Detalhes sobre minha educação.</p>
+            <!-- Adicione mais conteúdo aqui -->
         </section>
     </main>
     <footer>
