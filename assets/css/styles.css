@@ -103,20 +103,21 @@ footer {
 }
 
 .language-toggle {
-    margin-left: 1rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
-.language-toggle button {
+.language-toggle .lang-btn {
     padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
     background-color: #007acc;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.language-toggle button:hover {
+.language-toggle .lang-btn:hover {
     background-color: #005f99;
 }
 
