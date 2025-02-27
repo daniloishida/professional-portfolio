@@ -1,0 +1,29 @@
+{
+  "name": "interactive-website",
+  "version": "1.0.0",
+  "description": "An interactive website showcasing experiences, certifications, and education.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build process not defined yet.'"
+  },
+  "keywords": [
+    "interactive",
+    "website",
+    "portfolio"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {},
+  "homepage": "https://your-website-url.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/interactive-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/interactive-website/issues"
+  }
+}
