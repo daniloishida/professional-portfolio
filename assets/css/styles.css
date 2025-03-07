@@ -1,8 +1,8 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: #f4f4f4;
     color: #333;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -147,8 +147,19 @@ section.visible {
 
 .timeline {
     position: relative;
-    width: 100%;
-    overflow: hidden;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #333;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
 }
 
 .timeline-container {
@@ -184,6 +195,65 @@ section.visible {
 
 .next {
     right: 10px;
+}
+
+.container {
+    padding: 20px;
+    position: relative;
+    width: 50%;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.left {
+    left: 0;
+    text-align: right;
+}
+
+.right {
+    left: 50%;
+}
+
+.container img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 20px;
+    right: -25px;
+}
+
+.right img {
+    left: -25px;
+    right: auto;
+}
+
+.container h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.container p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+@media screen and (max-width: 600px) {
+    .timeline::after {
+        left: 20px;
+    }
+    .container {
+        width: 100%;
+        left: 0 !important;
+        text-align: left;
+        padding-left: 40px;
+    }
+    .container img {
+        left: 10px;
+        right: auto;
+    }
 }
 
 @media (max-width: 768px) {
