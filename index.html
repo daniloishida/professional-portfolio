@@ -1,99 +1,566 @@
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Portfolio</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="assets/js/scripts.js" defer></script>
+    <title>Danilo Issida Gonçalves | Gestão de Produtos & Tecnologia</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a192f;
+            color: #ccd6f6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .highlight {
+            color: #64ffda;
+        }
+        .card-bg {
+            background-color: #112240;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-bg:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        .skill-icon {
+            transition: transform 0.3s ease;
+        }
+        .skill-icon:hover {
+            transform: scale(1.1);
+            color: #64ffda;
+        }
+        /* Estilos para o Modal */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        /* Animação do Spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            border-color: #64ffda;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+        .competencia-tag {
+            background-color: #233554;
+            color: #ccd6f6;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        .cert-card {
+            background-color: #112240;
+            border-left: 4px solid #64ffda;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Danilo Issida Gonçalves</h1>
-        <nav>
-            <ul>
-                <li><a href="#experience" data-lang="experience" onclick="showSection('experience')">Experiências</a></li>
-                <li><a href="#certifications" data-lang="certifications" onclick="showSection('certifications')">Certificações</a></li>
-                <li><a href="#education" data-lang="education" onclick="showSection('education')">Educação</a></li>
-            </ul>
+<body class="leading-relaxed antialiased">
+
+    <!-- ===== Header / Navegação ===== -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-opacity-90 backdrop-blur-md" style="background-color: rgba(10, 25, 47, 0.85);">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold highlight">DI</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="hover:text-highlight transition-colors duration-300">Sobre</a>
+                <a href="#education" class="hover:text-highlight transition-colors duration-300">Formação</a>
+                <a href="#experience" class="hover:text-highlight transition-colors duration-300">Experiência</a>
+                <a href="#certifications" class="hover:text-highlight transition-colors duration-300">Certificações</a>
+                <a href="#portfolio" class="hover:text-highlight transition-colors duration-300">Projetos</a>
+                <a href="#contact" class="border border-highlight text-highlight px-4 py-2 rounded hover:bg-highlight hover:bg-opacity-10 transition-all duration-300">Contato</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
         </nav>
-        <div class="language-toggle">
-            <button onclick="toggleLanguage('en')" class="lang-btn">English</button>
-            <button onclick="toggleLanguage('pt')" class="lang-btn">Português</button>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+            <a href="#about" class="block text-center py-3 hover:bg-gray-700">Sobre</a>
+            <a href="#education" class="block text-center py-3 hover:bg-gray-700">Formação</a>
+            <a href="#experience" class="block text-center py-3 hover:bg-gray-700">Experiência</a>
+            <a href="#certifications" class="block text-center py-3 hover:bg-gray-700">Certificações</a>
+            <a href="#portfolio" class="block text-center py-3 hover:bg-gray-700">Projetos</a>
+            <a href="#contact" class="block text-center py-3 hover:bg-gray-700">Contato</a>
         </div>
     </header>
-    <main>
-        <section id="home">
-            <h2 data-lang="welcome">Bem-vindo ao meu portfólio interativo!</h2>
-            <p data-lang="explore">Explore minhas experiências, certificações e educação.</p>
-        </section>
-        <section id="experience" class="hidden">
-            <h2 data-lang="experience">Experiências</h2>
-            <div class="timeline">
-                <div class="container left">
-                    <h2>2010 - Início da Jornada</h2>
-                    <p>Comecei minha trajetória profissional e acadêmica na área de tecnologia, explorando novas tendências.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
-                </div>
-                <div class="container right">
-                    <h2>2015 - Primeiras Certificações</h2>
-                    <p>Obtenção das primeiras certificações em metodologias ágeis e transformação digital.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
-                </div>
-                <div class="container left">
-                    <h2>2020 - Consultoria em Agilidade</h2>
-                    <p>Atuação como consultor de transformação digital e metodologias ágeis, auxiliando empresas a escalarem suas operações.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
-                </div>
-                <div class="container right">
-                    <h2>2023 - Especializações e MBA</h2>
-                    <p>Conclusão de um MBA em Gestão e Transformação Digital e diversas certificações estratégicas.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
-                </div>
-                <div class="container left">
-                    <h2>2025 - Expansão Profissional</h2>
-                    <p>Atuação em projetos internacionais e novas oportunidades no setor de tecnologia e agilidade.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
+
+    <main class="container mx-auto px-6 lg:px-20">
+
+        <!-- ===== Seção de Apresentação (Hero) ===== -->
+        <section id="hero" class="min-h-screen flex flex-col justify-center">
+            <div class="max-w-3xl">
+                <p class="text-lg text-highlight mb-4">Olá, meu nome é</p>
+                <h1 class="text-5xl md:text-7xl font-bold text-gray-100">Danilo Issida Gonçalves.</h1>
+                <h2 class="text-4xl md:text-6xl font-bold text-gray-400 mt-2">Eu construo produtos digitais.</h2>
+                <p class="mt-6 max-w-xl text-lg text-gray-400">
+                    Sou um profissional de produtos com background técnico, apaixonado por criar soluções que resolvem problemas reais e geram valor para o negócio. Minha experiência abrange desde a ideação e estratégia até a gestão do delivery e automação de processos.
+                </p>
+                <div class="mt-8 flex items-center space-x-4">
+                    <a href="https://www.linkedin.com/in/danilo-ishida/" target="_blank" class="text-gray-400 hover:text-highlight transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="https://github.com/daniloishida" target="_blank" class="text-gray-400 hover:text-highlight transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
                 </div>
             </div>
         </section>
-        <section id="certifications" class="hidden">
-            <h2 data-lang="certifications">Certificações</h2>
-            <p>Detalhes sobre minhas certificações.</p>
-            <!-- Adicione mais conteúdo aqui -->
-        </section>
-        <section id="education" class="hidden">
-            <h2 data-lang="education">Educação</h2>
-            <div class="timeline">
-                <div class="container left">
-                    <h2>2010 - Início da Educação</h2>
-                    <p>Início dos estudos na área de tecnologia, com foco em desenvolvimento de software.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
+
+        <!-- ===== Sobre Mim ===== -->
+        <section id="about" class="py-24">
+            <h2 class="text-3xl font-bold mb-8 flex items-center"><span class="text-highlight mr-3">01.</span> Sobre Mim</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
+                <div class="md:col-span-3 text-gray-400 space-y-4 text-lg">
+                    <p>Olá! Sou o Danilo, um entusiasta da tecnologia que encontrou na gestão de produtos e na agilidade uma forma de transformar ideias em realidade. Minha carreira é marcada pela busca contínua por otimização, seja de processos, equipes ou produtos.</p>
+                    <p>Com uma sólida experiência em governança de TI, agilidade e liderança de transformação, migrei para a área de Produto para atuar mais próximo da estratégia de negócio e da entrega de valor ao cliente. Tenho um perfil analítico e orientado a dados, mas também sou apaixonado por entender o comportamento humano e facilitar a colaboração entre equipes.</p>
+                    <p>Atualmente, estou focado em automação de processos de negócio e na implementação de soluções de IA para aumentar a eficiência e a inteligência das operações.</p>
                 </div>
-                <div class="container right">
-                    <h2>2015 - Graduação</h2>
-                    <p>Conclusão da graduação em Ciência da Computação.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
-                </div>
-                <div class="container left">
-                    <h2>2020 - Pós-Graduação</h2>
-                    <p>Conclusão da pós-graduação em Engenharia de Software.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
-                </div>
-                <div class="container right">
-                    <h2>2023 - MBA</h2>
-                    <p>Conclusão do MBA em Gestão e Transformação Digital.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
-                </div>
-                <div class="container left">
-                    <h2>2025 - Cursos e Certificações</h2>
-                    <p>Participação em diversos cursos e obtenção de certificações na área de tecnologia.</p>
-                    <img src="https://via.placeholder.com/50" alt="Ícone">
+                <div class="md:col-span-2 flex justify-center">
+                    <div class="w-64 h-64 rounded-full overflow-hidden relative group">
+                        <div class="absolute inset-0 bg-highlight opacity-20 group-hover:opacity-0 transition-opacity duration-300"></div>
+                        <img src="https://avatars.githubusercontent.com/u/43335824?v=4" alt="Foto de Danilo Ishida" class="w-full h-full object-cover filter grayscale group-hover:filter-none transition-all duration-300">
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- ===== Formação Acadêmica ===== -->
+        <section id="education" class="py-24">
+            <h2 class="text-3xl font-bold mb-12 flex items-center"><span class="text-highlight mr-3">02.</span> Formação Acadêmica</h2>
+            <div class="max-w-4xl mx-auto relative border-l-2 border-gray-700 pl-10">
+                <!-- USP -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">fev de 2024 - set de 2025</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">MBA em Gestão e Transformação Digital</h3>
+                    <p class="text-gray-400">Universidade de São Paulo (USP)</p>
+                </div>
+                <!-- Faculdade VINCIT -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">jan de 2020 - dez de 2021</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Pós-Graduação em Ethical Hacking, CyberSecurity e Forense Computacional</h3>
+                    <p class="text-gray-400">Faculdade VINCIT</p>
+                </div>
+                <!-- PUC Minas -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">jan de 2018 - dez de 2019</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Pós-Graduação em Gerenciamento de Projetos</h3>
+                    <p class="text-gray-400">PUC Minas</p>
+                </div>
+                <!-- Universidade FUMEC -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">jan de 2013 - dez de 2017</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Tecnólogo em Jogos Digitais</h3>
+                    <p class="text-gray-400">Universidade FUMEC - Oficial</p>
+                </div>
+                <!-- COTEMIG -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">jan de 2007 - dez de 2009</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Ensino Médio + Técnico em Informática Gerencial</h3>
+                    <p class="text-gray-400">COTEMIG - Colégio e Faculdade</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== Experiência ===== -->
+        <section id="experience" class="py-24">
+            <h2 class="text-3xl font-bold mb-12 flex items-center"><span class="text-highlight mr-3">03.</span> Experiência Profissional</h2>
+            <div class="max-w-4xl mx-auto relative border-l-2 border-gray-700 pl-10">
+
+                <!-- Trizy -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">abr de 2025 - o momento</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Product Owner</h3>
+                    <p class="text-gray-400">Trizy by nstech · Remota</p>
+                </div>
+                <!-- Zup Innovation -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">abr de 2024 - dez de 2024</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Product Manager</h3>
+                    <p class="text-gray-400">Zup Innovation · Remota</p>
+                </div>
+                <!-- Zup Innovation - Especialista -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">jan de 2024 - abr de 2024</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Especialista em Governança de Portfólio de TI</h3>
+                    <p class="text-gray-400">Zup Innovation · Remota</p>
+                </div>
+                <!-- Zup Innovation - Agile Coach -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">jul de 2022 - jan de 2024</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Agile Coach | Agente de Transformação</h3>
+                    <p class="text-gray-400">Zup Innovation · Remota</p>
+                </div>
+                <!-- Zup Innovation - Transformation Lead -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">set de 2020 - jul de 2022</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Transformation Lead</h3>
+                    <p class="text-gray-400">Zup Innovation · Remota</p>
+                </div>
+                <!-- AMAVC -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">jun de 2022 - nov de 2024</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Presidente</h3>
+                    <p class="text-gray-400">AMAVC - Associação mineira do AVC</p>
+                </div>
+                <!-- Localiza -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">ago de 2020 - set de 2020</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Scrum Master | Agile Master</h3>
+                    <p class="text-gray-400">Localiza · Belo Horizonte, MG</p>
+                </div>
+                <!-- Conexão Ágil -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">mar de 2020 - ago de 2020</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Scrum Master | Agile Master (Cliente: Localiza)</h3>
+                    <p class="text-gray-400">Conexão Ágil Consultoria e Treinamentos</p>
+                </div>
+                <!-- Raro Labs -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">ago de 2019 - mar de 2020</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Scrum Master & PMO Agil (Cliente: Banco BMG)</h3>
+                    <p class="text-gray-400">Raro Labs</p>
+                </div>
+                <!-- PrimeTS -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">abr de 2018 - ago de 2019</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Gerente de projetos (Cliente: Arcelor Mittal)</h3>
+                    <p class="text-gray-400">PrimeTS - Prime Technology Solutions</p>
+                </div>
+                <!-- Proxxi Tecnologia -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">out de 2015 - abr de 2018</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Analista de suporte técnico (Cliente: Arcelor Mittal)</h3>
+                    <p class="text-gray-400">Proxxi Tecnologia</p>
+                </div>
+                <!-- ArcelorMittal Brasil -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">set de 2011 - set de 2013</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Estagiário de projetos</h3>
+                    <p class="text-gray-400">ArcelorMittal Brasil</p>
+                </div>
+                <!-- SONDA -->
+                <div class="mb-12">
+                    <div class="absolute w-4 h-4 bg-highlight rounded-full -left-2 mt-1.5"></div>
+                    <p class="text-sm text-highlight">set de 2009 - jan de 2010</p>
+                    <h3 class="text-xl font-bold text-gray-100 mt-1">Atendente Service Desk (Cliente: Arcelor Mittal)</h3>
+                    <p class="text-gray-400">SONDA</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== Certificações ===== -->
+        <section id="certifications" class="py-24">
+            <h2 class="text-3xl font-bold mb-12 flex items-center"><span class="text-highlight mr-3">04.</span> Certificações</h2>
+            <div class="space-y-12">
+                <!-- Categoria: Gestão de Produtos & Design -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-200 mb-6">Gestão de Produtos & Design</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="cert-card p-4"><h4 class="font-bold">Digital Product Leadership</h4><p class="text-sm text-gray-400">Tera</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Digital Product Design</h4><p class="text-sm text-gray-400">Tera</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Product Marketing</h4><p class="text-sm text-gray-400">Tera</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Product Discovery</h4><p class="text-sm text-gray-400">Tera</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Product Operations</h4><p class="text-sm text-gray-400">PM3</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Curso de Product Management</h4><p class="text-sm text-gray-400">PM3</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Product Manager</h4><p class="text-sm text-gray-400">Coderhouse</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">A arte da gestão de projetos de Software</h4><p class="text-sm text-gray-400">Software Zen</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Design Thinking</h4><p class="text-sm text-gray-400">Descola Cursos Inovadores</p></div>
+                    </div>
+                </div>
+
+                <!-- Categoria: Inteligência Artificial & GenAI -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-200 mb-6">Inteligência Artificial & GenAI</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="cert-card p-4"><h4 class="font-bold">AI Max</h4><p class="text-sm text-gray-400">StartSe University</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">IA GLOBAL RESET</h4><p class="text-sm text-gray-400">StartSe University</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">AI for Leaders</h4><p class="text-sm text-gray-400">StartSe University</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Inteligência Artificial Generativa em Marketing</h4><p class="text-sm text-gray-400">Universidade de São Paulo</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Inteligência Artificial aplicada a Negócios</h4><p class="text-sm text-gray-400">PM3</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">AI for Business</h4><p class="text-sm text-gray-400">Ibmec</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">AWS Partner: Generative AI Essentials</h4><p class="text-sm text-gray-400">Amazon Web Services (AWS)</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Ethics in the Age of Generative AI</h4><p class="text-sm text-gray-400">LinkedIn</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Responsible AI</h4><p class="text-sm text-gray-400">LinkedIn</p></div>
+                    </div>
+                </div>
+
+                <!-- Categoria: Agilidade, Scrum & Kanban -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-200 mb-6">Agilidade, Scrum & Kanban</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="cert-card p-4"><h4 class="font-bold">CAC® - Certified Agile Coach</h4><p class="text-sm text-gray-400">Massimus</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Kanban Coaching Professional (KCP)</h4><p class="text-sm text-gray-400">Kanban University</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Kanban Management Professional (KMP)</h4><p class="text-sm text-gray-400">Kanban University</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Certified Scrum Product Owner® (CSPO®)</h4><p class="text-sm text-gray-400">Scrum Alliance</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Certified ScrumMaster® (CSM®)</h4><p class="text-sm text-gray-400">Scrum Alliance</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Gestão de Resultados com OKRs</h4><p class="text-sm text-gray-400">PM3</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Agile Change Management</h4><p class="text-sm text-gray-400">Management 3.0</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">CLF® – Certified Lean Inception Facilitator®</h4><p class="text-sm text-gray-400">Caroli.org</p></div>
+                    </div>
+                </div>
+                
+                <!-- Categoria: Liderança, Estratégia & Governança -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-200 mb-6">Liderança, Estratégia & Governança</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="cert-card p-4"><h4 class="font-bold">Liderança em Transformação Digital</h4><p class="text-sm text-gray-400">Universidade de São Paulo</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Liderança e estratégia de negócios</h4><p class="text-sm text-gray-400">Tera</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Data for Leaders</h4><p class="text-sm text-gray-400">StartSe University</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">System Thinking & Practices</h4><p class="text-sm text-gray-400">Software Zen</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Gestão da Mudança</h4><p class="text-sm text-gray-400">PUCRS</p></div>
+                    </div>
+                </div>
+
+                <!-- Categoria: Cybersecurity -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-200 mb-6">Cybersecurity</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="cert-card p-4"><h4 class="font-bold">Bootcamp - Analista de CyberSecurity</h4><p class="text-sm text-gray-400">IGTI</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Técnicas de investigação com OSINT</h4><p class="text-sm text-gray-400">Academia de Forense Digital</p></div>
+                        <div class="cert-card p-4"><h4 class="font-bold">Investigação forense na Internet</h4><p class="text-sm text-gray-400">Marcos Monteiro</p></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== Hard Skills ===== -->
+        <section id="skills" class="py-24 text-center">
+            <h2 class="text-3xl font-bold mb-12 flex items-center justify-center"><span class="text-highlight mr-3">05.</span> Habilidades Técnicas</h2>
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-8 max-w-4xl mx-auto">
+                <div class="flex flex-col items-center skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="h-16" /><span>HTML5</span></div>
+                <div class="flex flex-col items-center skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="h-16" /><span>CSS3</span></div>
+                <div class="flex flex-col items-center skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="h-16" /><span>JavaScript</span></div>
+                <div class="flex flex-col items-center skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="h-16" /><span>React</span></div>
+                <div class="flex flex-col items-center skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="h-16" /><span>Node.js</span></div>
+                <div class="flex flex-col items-center skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="h-16" /><span>Docker</span></div>
+                <div class="flex flex-col items-center skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="h-16" /><span>Git</span></div>
+                <div class="flex flex-col items-center skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="h-16" /><span>Python</span></div>
+            </div>
+        </section>
+
+        <!-- ===== Portfólio ===== -->
+        <section id="portfolio" class="py-24">
+            <h2 class="text-3xl font-bold mb-12 flex items-center"><span class="text-highlight mr-3">06.</span> Projetos Pessoais</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Projeto 1 -->
+                <div class="card-bg rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-100 mb-2 project-title">Decodificador de Texto</h3>
+                    <p class="text-gray-400 flex-grow mb-4 project-description">Uma aplicação web simples para criptografar e descriptografar textos.</p>
+                    <div class="text-sm text-gray-500 mb-4"><span>HTML</span> &middot; <span>CSS</span> &middot; <span>JavaScript</span></div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/daniloishida/challenge-oracle-decoder" target="_blank" class="text-gray-400 hover:text-highlight">GitHub</a>
+                            <a href="https://daniloishida.github.io/challenge-oracle-decoder/" target="_blank" class="text-gray-400 hover:text-highlight">Deploy</a>
+                        </div>
+                        <button class="ai-suggestion-btn text-sm highlight hover:underline">✨ Sugerir Melhorias</button>
+                    </div>
+                </div>
+                 <!-- Projeto 2 -->
+                <div class="card-bg rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-100 mb-2 project-title">Alura Books</h3>
+                    <p class="text-gray-400 flex-grow mb-4 project-description">Website para uma livraria fictícia, focado em responsividade e consumo de API.</p>
+                    <div class="text-sm text-gray-500 mb-4"><span>HTML</span> &middot; <span>CSS</span> &middot; <span>JavaScript</span> &middot; <span>API</span></div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/daniloishida/AluraBooks" target="_blank" class="text-gray-400 hover:text-highlight">GitHub</a>
+                            <a href="https://daniloishida.github.io/AluraBooks/" target="_blank" class="text-gray-400 hover:text-highlight">Deploy</a>
+                        </div>
+                        <button class="ai-suggestion-btn text-sm highlight hover:underline">✨ Sugerir Melhorias</button>
+                    </div>
+                </div>
+                <!-- Projeto 3 -->
+                <div class="card-bg rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-100 mb-2 project-title">Alura Midi</h3>
+                    <p class="text-gray-400 flex-grow mb-4 project-description">Um instrumento musical interativo (MIDI) que pode ser tocado pelo teclado.</p>
+                    <div class="text-sm text-gray-500 mb-4"><span>HTML</span> &middot; <span>CSS</span> &middot; <span>JavaScript</span></div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/daniloishida/AluraMidi" target="_blank" class="text-gray-400 hover:text-highlight">GitHub</a>
+                            <a href="https://daniloishida.github.io/AluraMidi/" target="_blank" class="text-gray-400 hover:text-highlight">Deploy</a>
+                        </div>
+                        <button class="ai-suggestion-btn text-sm highlight hover:underline">✨ Sugerir Melhorias</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Contato ===== -->
+        <section id="contact" class="py-24 text-center">
+            <h2 class="text-3xl font-bold mb-4 flex items-center justify-center"><span class="text-highlight mr-3">07.</span> Entre em Contato</h2>
+            <p class="max-w-xl mx-auto text-lg text-gray-400 mb-8">Estou sempre aberto a novas oportunidades e colaborações. Se você tem um projeto em mente ou apenas quer trocar uma ideia, sinta-se à vontade para me enviar uma mensagem.</p>
+            <a href="mailto:danissida@hotmail.com" class="inline-block border border-highlight text-highlight text-lg px-8 py-4 rounded hover:bg-highlight hover:bg-opacity-10 transition-all duration-300">
+                Diga Olá
+            </a>
+        </section>
+
     </main>
-    <footer>
-        <p>&copy; 2025 Danilo Issida Gonçalves</p>
+
+    <!-- ===== Footer ===== -->
+    <footer class="py-6 text-center text-gray-500">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="https://www.linkedin.com/in/daniloishida/" target="_blank" class="hover:text-highlight transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a href="https://github.com/daniloishida" target="_blank" class="hover:text-highlight transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+        </div>
+        <p>Desenvolvido por Danilo Ishida.</p>
     </footer>
+
+    <!-- Modal para Sugestões da IA -->
+    <div id="ai-modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden opacity-0">
+        <div class="modal-content card-bg rounded-lg shadow-2xl p-8 max-w-2xl w-full transform scale-95">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-gray-100">✨ Sugestões da IA</h3>
+                <button id="close-modal-btn" class="text-3xl text-gray-500 hover:text-white">&times;</button>
+            </div>
+            <div id="modal-body">
+                <div id="spinner-container" class="flex justify-center items-center h-40">
+                    <div class="spinner w-12 h-12 rounded-full border-4"></div>
+                </div>
+                <div id="suggestion-content" class="hidden text-gray-300 space-y-4"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Lógica para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (const link of mobileMenuLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+
+        // Lógica para o Modal e API Gemini
+        const aiModal = document.getElementById('ai-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const aiSuggestionBtns = document.querySelectorAll('.ai-suggestion-btn');
+        const spinnerContainer = document.getElementById('spinner-container');
+        const suggestionContent = document.getElementById('suggestion-content');
+
+        const openModal = () => {
+            aiModal.classList.remove('hidden');
+            setTimeout(() => aiModal.classList.remove('opacity-0'), 10);
+            setTimeout(() => aiModal.querySelector('.modal-content').classList.remove('scale-95'), 10);
+            spinnerContainer.style.display = 'flex';
+            suggestionContent.style.display = 'none';
+            suggestionContent.innerHTML = '';
+        };
+
+        const closeModal = () => {
+            aiModal.querySelector('.modal-content').classList.add('scale-95');
+            aiModal.classList.add('opacity-0');
+            setTimeout(() => aiModal.classList.add('hidden'), 300);
+        };
+
+        closeModalBtn.addEventListener('click', closeModal);
+        aiModal.addEventListener('click', (e) => {
+            if (e.target === aiModal) {
+                closeModal();
+            }
+        });
+
+        aiSuggestionBtns.forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                openModal();
+                
+                const card = e.target.closest('.card-bg');
+                const title = card.querySelector('.project-title').textContent;
+                const description = card.querySelector('.project-description').textContent;
+                
+                const prompt = `
+                    Você é um consultor de tecnologia sênior.
+                    Analise o seguinte projeto de software e sugira 3 melhorias ou novas funcionalidades.
+                    Para cada sugestão, explique o porquê e quais tecnologias poderiam ser usadas.
+                    Seja criativo e técnico. Formate sua resposta em HTML com cabeçalhos e listas.
+
+                    Projeto:
+                    - Título: ${title}
+                    - Descrição: ${description}
+                `;
+
+                try {
+                    const apiKey = ""; 
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                    const payload = {
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }]
+                    };
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    let text = 'Não foi possível obter sugestões no momento.';
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts.length > 0) {
+                       text = result.candidates[0].content.parts[0].text;
+                    }
+                    
+                    suggestionContent.innerHTML = text;
+
+                } catch (error) {
+                    console.error("Erro ao chamar a API Gemini:", error);
+                    suggestionContent.innerHTML = '<p class="text-red-400">Desculpe, ocorreu um erro ao buscar as sugestões. Tente novamente mais tarde.</p>';
+                } finally {
+                    spinnerContainer.style.display = 'none';
+                    suggestionContent.style.display = 'block';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
