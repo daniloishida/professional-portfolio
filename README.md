@@ -2,7 +2,7 @@
 Bem-vindo ao repositório do site de portfólio profissional de Danilo Issida Gonçalves. Este é o repositório do meu portfólio pessoal, uma landing page estática e responsiva construída para apresentar minhas habilidades, experiências e projetos.
 
 O site é totalmente interativo, suporta múltiplos idiomas (PT/EN) e inclui uma integração dinâmica com a API do Google Gemini para sugestões de projetos.
----
+
 ## 📋 Funcionalidades
 Design Responsivo: Totalmente adaptável para desktops, tablets e dispositivos móveis, utilizando TailwindCSS.
 
@@ -11,10 +11,12 @@ Suporte Multi-idioma: Alternância dinâmica entre Português (pt) e Inglês (en
 Integração com IA (Google Gemini): A seção "Projetos" possui botões que consomem a API do Google Gemini em tempo real para gerar sugestões de melhorias para cada projeto.
 
 Componentes Dinâmicos: O site inclui componentes interativos como menu mobile (hambúrguer), modais, timelines de experiência e barras de proficiência de skills.
----
+
+
 ## 🛠️ Estrutura do Projeto
 O site foi desenvolvido como uma página única (single-page) utilizando HTML, TailwindCSS (via CDN) e JavaScript puro para toda a interatividade.
----
+
+
 ## Estrutura de Arquivos
 O projeto é intencionalmente simples, consistindo em apenas um arquivo principal:
 
@@ -76,7 +78,8 @@ Você deve servi-lo a partir de um servidor local. A forma mais fácil é:
 Use a extensão Live Server no VS Code.
 
 Clique com o botão direito no index.html e selecione "Open with Live Server".
----
+
+
 ## 📂 Recursos e Personalizações
 Toda a personalização de texto é centralizada para facilitar a manutenção.
 
@@ -107,7 +110,7 @@ Faça o upload das suas imagens para um local público (como o próprio reposit�
 No index.html, encontre a tag <img> que deseja alterar.
 
 Substitua o valor no atributo src="..." pelo seu novo link URL.
----
+
 ## 🌐 Tecnologias Utilizadas
 HTML5: Estrutura semântica do site.
 
@@ -116,6 +119,6 @@ TailwindCSS (via CDN): Framework Utility-First para toda a estilização e layou
 JavaScript (Vanilla ES6+): Usado para a manipulação do DOM, funcionalidade do menu mobile, sistema de tradução e chamadas de API.
 
 Google Gemini API: Consumida para a funcionalidade interativa de sugestões de projetos.
----
+
 ## 📄 Licença
 Este projeto está licenciado sob a Licença MIT. Sinta-se à vontade para usar este código como base para seu próprio portfólio.
