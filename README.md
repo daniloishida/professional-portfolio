@@ -49,7 +49,7 @@ O conteúdo é organizado pelas seguintes seções navegáveis:
 #services (Como Posso Ajudar?)
 
 #contact (Links de Contato)
----
+
 ## 🚀 Como Rodar o Projeto
 Este projeto requer duas etapas cruciais: configurar a API e executá-lo em um servidor local (para evitar erros de CORS).
 
